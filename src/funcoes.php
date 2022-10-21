@@ -14,8 +14,15 @@ class Funcoes
 	Ano 1700 = século 17
 
      * */
-    public function SeculoAno(int $ano): int {
-        
+    public function SeculoAno(int $ano)
+    {
+        $calculo = $ano/100;
+
+        if (is_float($calculo)){
+            $seculo = $ano/100 + 1;
+            return (int)$seculo;
+        }
+        return $calculo;
     }
 
     
@@ -37,7 +44,28 @@ class Funcoes
 
      * */
     public function PrimoAnterior(int $numero): int {
-        
+
+        for($p = 1; $p <= $numero; $p++)
+        {
+            $quantidadeDivisores = 0;
+
+            for($j = $p; $j >= 1; $j--)
+            {
+                if (($p % $j) == 0) {
+                    $quantidadeDivisores++;
+                }
+            }
+
+            if ($quantidadeDivisores == 2)
+            {
+                $primo = [$p];
+            }
+        }
+
+        if ($primo){
+             return end($primo);
+        }
+        return 0;
     }
 
 
@@ -66,7 +94,11 @@ class Funcoes
 
      * */
     public function SegundoMaior(array $arr): int {
-        
+        foreach ($arr as $array){
+            $maiorNumeroArray[] = max($array);
+        }
+        rsort($maiorNumeroArray);
+        return $maiorNumeroArray[1];
     }
 	
 	
